@@ -27,6 +27,9 @@ jobs:
           echo $TWINGATE_SERVICE_KEY | sudo twingate setup --headless=-
           sudo twingate start
 
+      - name: Twingate status
+        run: twingate status
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
