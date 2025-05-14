@@ -24,7 +24,7 @@ jobs:
         env:
           TWINGATE_SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
         run: |
-          echo $TWINGATE_SERVICE_KEY | twingate setup --headless=-
+          echo $TWINGATE_SERVICE_KEY | sudo twingate setup --headless=-
           twingate start
 
       - name: Twingate status
