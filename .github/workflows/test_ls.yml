@@ -14,18 +14,13 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
 
-      - name: Install Twingate
-        run: |
-          echo "deb [trusted=yes] https://packages.twingate.com/apt/ /" | sudo tee /etc/apt/sources.list.d/twingate.list
-          sudo apt update -yq
-          sudo apt install -yq twingate
-
-      - name: Setup and start Twingate
-        env:
-          TWINGATE_SERVICE_KEY: ${{ secrets.SERVICE_KEY }}
-        run: |
-          echo $TWINGATE_SERVICE_KEY | sudo twingate setup --headless=-
-          twingate start
+      - uses: twingate/github-action@v1
+        with:
+          # The Twingate Service Key used to connect Twingate to the proper service
+          # Learn more about [Twingate Services](https://docs.twingate.com/docs/services)
+          #
+          # Required
+          service-key: ${{ secrets.SERVICE_KEY }}
 
       - name: Twingate status
         run: twingate status
