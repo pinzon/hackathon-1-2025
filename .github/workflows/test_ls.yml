@@ -48,3 +48,6 @@ jobs:
 
         run: |
           poetry run pytest tests
+
+      - name: stop twingate
+        run: sudo stop twingate
